@@ -324,6 +324,18 @@ INT16 mote_api_cmd_reset(void);
 
 //*****************************************************************************
 //
+//! \brief  Reset smartmesh IP mote by H/W
+//!
+//! \param  None
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_hw_reset(void);
+
+//*****************************************************************************
+//
 //! \brief Send a packet into the network
 //!
 //! \param  socketId: Socket ID
@@ -426,6 +438,392 @@ void mote_api_autojoin(void);
 //*****************************************************************************
 INT8 mote_api_get_socketid(INT8 *_i8SocketID);
 
+//*****************************************************************************
+//
+//! \brief The mote initiate disconnection from the network
+//!
+//! \param  None
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_disconnect(void);
+
+//*****************************************************************************
+//
+//! \brief  Radio transmission test
+//!
+//! \param  None
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT8 mote_api_radiotest(void);
+
+//*****************************************************************************
+//
+//! \brief Get the application version information
+//!
+//! \param  _ptInfo: pointer to the application version information
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_appinfo(AppInfo_t *_ptInfo);
+
+//*****************************************************************************
+//
+//! \brief Retrieve the antenna gain used by the system
+//!
+//! \param  _pi8Gain: pointer to the antenna gain
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_antgain(INT8 *_pi8Gain);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve the current autoJoin setting
+//!
+//! \param  _pbAutoJoin: pointer to the autoJoin setting
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_autojoin(BOOL *_pbAutoJoin);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve the charge consumption of the mote since the last reset
+//!
+//! \param  _ptCharge: pointer to value of charge consumption
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_charge(Charge_t *_ptCharge);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve the EN 300 328 compliance mode that is used by the device
+//!
+//! \param  _pu8Mode: pointer to value of compliance mode
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_eucompliantmode(UINT8 *_pu8Mode);
+
+//*****************************************************************************
+//
+//! \brief  Read the currently subscribed-to event types
+//!
+//! \param  _pu32Event: pointer to event types
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_eventmask(UINT32 *_pu32Event);
+
+//*****************************************************************************
+//
+//! \brief  Read IPV6 address assigned to the mote. Before the mote has an 
+//!         assigned address it will return all 0s.
+//!
+//! \param  _pui8ipv6Addr: pointer to array of IPV6 address
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_ipv6address(UINT8 *_pui8ipv6Addr);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve current value of joinDutyCycle parameter.
+//!
+//! \param  _pu8JoinDutyCycle: pointer to vaule of joinDutyCycle
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_joindutycycle(UINT8 *_pu8JoinDutyCycle);
+
+//*****************************************************************************
+//
+//! \brief  Read the MAC address of the device
+//!
+//! \param  _pui8MacAddr: pointer to array of MAC address
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_macaddress(UINT8 *_pui8MacAddr);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve the mote's Mote ID. If the mote is not in the network, 
+//!         value of 0 is returned
+//!
+//! \param  _pui16moteid: pointer to value of Mote ID
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_shortaddress(UINT16 *_pui16moteid);
+
+//*****************************************************************************
+//
+//! \brief  Get the information about the mote's hardware and network stack 
+//!         software
+//!
+//! \param  _ptInfo: pointer to information
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_moteinfo(MoteInfo_t *_ptInfo);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve current mote state and other dynamic information
+//!
+//! \param  _ptMoteStatus: pointer to mote state and other dynamic information
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_motestatus(MoteStatus_t *_ptMoteStatus);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve the mote's network-related parameters
+//!
+//! \param  _ptInfo: pointer to the mote's network-related parameters
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_netinfo(NetInfo_t *_ptInfo);
+
+//*****************************************************************************
+//
+//! \brief  Get the network ID stored in mote's persistent storage
+//!
+//! \param  _pui16Id: pointer to value of network ID
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_networkid(UINT16 *_pui16Id);
+
+//*****************************************************************************
+//
+//! \brief  Read the current state of OTAP lockout
+//!
+//! \param  _pbOtap: pointer to value of OTAP lockout
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_otaplockout(BOOL *_pbOtap);
+
+//*****************************************************************************
+//
+//! \brief  Retrieve the current routing mode of the mote
+//!
+//! \param  _pbMode: pointer to value of routing mode
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_routingmode(BOOL *_pbMode);
+
+//*****************************************************************************
+//
+//! \brief  Request the current time on the mote. The mote reports time at the
+//!         moment it is processing the command, so the information includes 
+//!         variable delay
+//!
+//! \param  _ptTime: pointer to value of current time
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_time(Time_t *_ptTime);
+
+//*****************************************************************************
+//
+//! \brief  Get the radio output power in dBm, excluding any antenna gain
+//!
+//! \param  _pi8TxPower: pointer to value of radio output power
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_getp_txpower(INT8 *_pi8TxPower);
+
+//*****************************************************************************
+//
+//! \brief  Set the antenna gain of the system
+//!
+//! \param  _i8Gain: The value of antenna gain
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_antgain(INT8 _i8Gain);
+
+//*****************************************************************************
+//
+//! \brief  Set automatic joining to mote's networking. This setting is 
+//!         persistent and takes effect after mote reset
+//!
+//! \param  _bAutoJoin: The value of automatic joining
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_autojoin(BOOL _bAutoJoin);
+
+//*****************************************************************************
+//
+//! \brief  Set the EN 300 328 compliance mode that is used by the device
+//!
+//! \param  _u8Mode: The value of compliance mode. The value of 0=off, 1=on
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_eucompliantmode(UINT8 _u8Mode);
+
+//*****************************************************************************
+//
+//! \brief  Set event mask to selectively subscribe to event notifications
+//!
+//! \param  _u32Event: The value of event mask
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_eventmask(UINT32 _u32Event);
+
+//*****************************************************************************
+//
+//! \brief  Set joinDutyCycle to control the ratio of active listen time to doze
+//!         time (a low-power radio state) during the period when the mote is 
+//!         searching for the network
+//!
+//! \param  _u8JoinDutyCycle: The value of joinDutyCycle. The duty cycle 
+//!                           (0-255), where 0=0.2% and 255=99.8%
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_joindutycycle(UINT8 _u8JoinDutyCycle);
+
+//*****************************************************************************
+//
+//! \brief  Set the join key in mote's persistent storage. Join keys are used by
+//!         motes to establish secure connection with the network
+//!
+//! \param  _pi8Key: pointer to array of join key
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_joinkey(INT8 *_pi8Key);
+
+//*****************************************************************************
+//
+//! \brief  Overwrite the manufacturer-assigned MAC address of the device. The 
+//!         new value takes effect after the mote resets
+//!
+//! \param  _pui8MacAddr: pointer to array of MAC address
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_macaddress(UINT8 *_pui8MacAddr);
+
+//*****************************************************************************
+//
+//! \brief  Set the network ID of the mote. This setting is persistent and is 
+//!         used on next join attempt.
+//!
+//! \param  _u16Id: The value of network ID
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_networkid(UINT16 _u16Id);
+
+//*****************************************************************************
+//
+//! \brief  Set the state of Over-The-Air Programming(OTAP) lockout to control 
+//!         whether OTAP of motes is allowed.
+//!
+//! \param  _bOtap: The state of OTAP. 0=otap allowed, 1=OTAP not allowed
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_otaplockout(BOOL _bOtap);
+
+//*****************************************************************************
+//
+//! \brief  Set routing mode to control whether the mote will become a router 
+//!         once joined the network.
+//!
+//! \param  _bMode: The value of routing mode. 0=routing, 1=non-routing
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_routingmode(BOOL _bMode);
+
+//*****************************************************************************
+//
+//! \brief  Set the radio output power in dBm, excluding any antenna gain
+//!
+//! \param  _i8TxPower: The value of radio output power is 0 dBm or 8dBm. 
+//!
+//! \return  On success, zero is returned.
+//!          On error, negative is returned.
+//!
+//*****************************************************************************
+INT16 mote_api_setp_txpower(INT8 _i8TxPower);
+
 
 
 //*****************************************************************************
@@ -442,41 +840,6 @@ INT16 mote_api_check_response(void);
 INT16 mote_api_check_status(UINT16 _u16PktId);
 void mote_api_receive_request(UINT8* rcvBuff, UINT8 length);
 void mote_api_receive_response(UINT8* rcvBuff, UINT8 length);
-INT8 mote_api_radiotest(void);
-INT16 mote_api_hw_reset(void);
-INT16 mote_api_get_service_info(UINT16 _u16DestAddr, UINT8 _u8Type, ServiceInfo_t *_ptInfo);
-INT16 mote_api_disconnect(void);
-INT16 mote_api_getp_appinfo(AppInfo_t *_ptInfo);
-INT16 mote_api_getp_antgain(INT8 *_pi8Gain);
-INT16 mote_api_getp_autojoin(BOOL *_pbAutoJoin);
-INT16 mote_api_getp_charge(Charge_t *_ptCharge);
-INT16 mote_api_getp_ipv6address(UINT8 *_pui8MacAddr);
-INT16 mote_api_getp_joindutycycle(UINT8 *_pu8JoinDutyCycle);
-INT16 mote_api_getp_macaddress(UINT8 *_pui8MacAddr);
-INT16 mote_api_getp_shortaddress(UINT16 *_pui16moteid);
-INT16 mote_api_getp_motestatus(MoteStatus_t *_ptMoteStatus);
-INT16 mote_api_getp_networkid(UINT16 *_pui16Id);
-INT16 mote_api_getp_otaplockout(BOOL *_pbOtap);
-INT16 mote_api_getp_routingmode(BOOL *_pbMode);
-INT16 mote_api_getp_time(Time_t *_ptTime);
-INT16 mote_api_getp_txpower(INT8 *_pi8TxPower);
-INT16 mote_api_getp_eucompliantmode(UINT8 *_pu8Mode);
-INT16 mote_api_getp_eventmask(UINT32 *_pu32Event);
-INT16 mote_api_getp_moteinfo(MoteInfo_t *_ptInfo);
-INT16 mote_api_getp_netinfo(NetInfo_t *_ptInfo);
-INT16 mote_api_setp_eventmask(UINT32 _u32Event);
-INT16 mote_api_setp_antgain(INT8 _i8Gain);
-INT16 mote_api_setp_autojoin(BOOL _bAutoJoin);
-INT16 mote_api_setp_joindutycycle(UINT8 _u8JoinDutyCycle);
-INT16 mote_api_setp_joinkey(INT8 *_pi8Key);
-INT16 mote_api_setp_macaddress(UINT8 *_pui8MacAddr);
-INT16 mote_api_setp_networkid(UINT16 _u16Id);
-INT16 mote_api_setp_otaplockout(BOOL _bOtap);
-INT16 mote_api_setp_routingmode(BOOL _bMode);
-INT16 mote_api_setp_txpower(INT8 _i8TxPower);
-INT16 mote_api_setp_eucompliantmode(UINT8 _u8Mode);
-INT16 mote_api_setp_eventmask(UINT32 _u32Event);
-
 
 
 
